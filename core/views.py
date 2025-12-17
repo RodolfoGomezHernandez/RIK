@@ -1,3 +1,5 @@
 from django.shortcuts import render
 
-# Create your views here.
+def home(request):
+    # Renderizamos base.html temporalmente para probar el diseño
+    return render(request, 'base.html')
