@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RiK | Gestión de Eventos Inteligente</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="[https://cdn.tailwindcss.com](https://cdn.tailwindcss.com)"></script>
+    <script src="[https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js](https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js)"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#6366f1',
+              secondary: '#10b981',
+              dark: '#1e293b',
+            }
+          }
+        }
+      }
+    </script>
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col">
+    <!-- Navbar -->
+    <nav class="bg-dark text-white p-4 sticky top-0 z-50 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/" class="text-2xl font-bold flex items-center gap-2">
+                <i data-feather="calendar"></i> Eventos RIK
+            </a>
+            <div class="hidden md:flex gap-6 items-center">
+                <a href="/" class="hover:text-primary transition">Inicio</a>
+                <a href="/#eventos" class="hover:text-primary transition">Eventos</a>
+                {% if user.is_authenticated %}
+                    <span class="text-gray-400">Hola, {{ user.username }}</span>
+                    {% if user.is_staff %}
+                        <a href="/admin/" class="bg-gray-700 px-3 py-1 rounded hover:bg-gray-600">Admin</a>
+                    {% endif %}
+                    <form action="{% url 'logout' %}" method="post" class="inline">
+                        {% csrf_token %}
+                        <button type="submit" class="text-red-400 hover:text-red-300">Salir</button>
+                    </form>
+                {% else %}
+                    <a href="/login/" class="hover:text-primary transition">Iniciar Sesión</a>
+                    <a href="/registro/" class="bg-primary px-4 py-2 rounded-lg hover:bg-opacity-90 transition">Registrarse</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <main class="flex-grow">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-8 mt-12">
+        <div class="container mx-auto text-center">
+            <p class="mb-4">© 2025 Eventos RIK - Gestión de Reservas</p>
+            <div class="flex justify-center gap-4">
+                <i data-feather="facebook" class="w-5 h-5 hover:text-primary cursor-pointer"></i>
+                <i data-feather="instagram" class="w-5 h-5 hover:text-primary cursor-pointer"></i>
+                <i data-feather="twitter" class="w-5 h-5 hover:text-primary cursor-pointer"></i>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        feather.replace();
+    </script>
+</body>
+</html>
