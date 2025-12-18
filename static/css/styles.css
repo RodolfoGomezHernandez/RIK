@@ -1,8 +1,105 @@
-/* Importación limpia sin caracteres extraños */
+/* Importación limpia de fuentes */
 @import url('[https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap](https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap)');
 
 body {
     font-family: 'Poppins', sans-serif;
+}
+
+/* --- ESTILOS DEL NAVBAR (Migrados desde el HTML) --- */
+
+/* Reemplaza a :host */
+.custom-navbar {
+    display: block;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    /* Gradiente RIK: Verde suave a Azul cielo */
+    background: linear-gradient(135deg, #86efac 0%, #7dd3fc 100%);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    /* Font size y weight ya no son necesarios si solo envuelve la imagen, 
+       pero los dejo por si pones texto */
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.logo img {
+    height: 50px; 
+    width: auto;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.nav-links a {
+    color: #1e293b; /* Color Dark */
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+}
+
+.nav-links a:hover {
+    color: #0f172a; /* Un tono más oscuro al pasar el mouse */
+}
+
+/* Estilo para los iconos dentro de los enlaces */
+.nav-links a svg.feather {
+    margin-right: 0.3rem;
+    width: 1rem;
+    height: 1rem;
+}
+
+/* Botón de Login (Estilo específico) */
+.login-btn {
+    background-color: #6366f1; /* Primary (Indigo-500) */
+    color: white !important;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.2s;
+}
+
+.login-btn:hover {
+    background-color: #4f46e5; /* Primary Darker (Indigo-600) */
+}
+
+/* Botón menú móvil (oculto en desktop) */
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #1e293b;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none; /* Aquí podrías agregar lógica JS para mostrar el menú */
+    }
+    .mobile-menu-btn {
+        display: block;
+    }
 }
 
 /* Scrollbar personalizado */
@@ -10,4 +107,3 @@ body {
 ::-webkit-scrollbar-track { background: #f1f1f1; }
 ::-webkit-scrollbar-thumb { background: #6366f1; border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: #4f46e5; }
-

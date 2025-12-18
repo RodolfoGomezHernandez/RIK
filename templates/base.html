@@ -7,7 +7,7 @@
     <title>RiK | Gestión de Eventos Inteligente</title>
     
     <!-- 1. CSS Personalizado -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
@@ -29,90 +29,71 @@
     </script>
 </head>
 <body class="bg-gray-50 min-h-screen flex flex-col">
-<custom-navbar><template shadowrootmode="open">
-      <style>
-        :host {
-          display: block;
-          width: 100%;
-          position: sticky;
-          top: 0;
-          z-index: 50;
-          background: linear-gradient(135deg, #86efac 0%, #7dd3fc 100%);
-          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        }
-        .navbar-container {
-          max-width: 1280px;
-          margin: 0 auto;
-          padding: 1rem 2rem;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-        }
-        .logo {
-          font-size: 1.5rem;
-          font-weight: 700;
-          color: #1e293b;
-          text-decoration: none;
-          display: flex;
-          align-items: center;
-        }
-        .logo img {
-          height: 50px;
-          width: auto;
-        }
-        .nav-links {
-          display: flex;
-          gap: 1.5rem;
-          align-items: center;
-        }
-        .nav-links a {
-          color: #1e293b;
-          text-decoration: none;
-          font-weight: 500;
-          transition: color 0.2s;
-          display: flex;
-          align-items: center;
-        }
-        .nav-links a:hover {
-          color: #0f172a;
-        }
-        .nav-links a i {
-          margin-right: 0.3rem;
-          width: 1rem;
-          height: 1rem;
-        }
-        .mobile-menu-btn {
-          display: none;
-          background: none;
-          border: none;
-          cursor: pointer;
-        }
-        @media (max-width: 768px) {
-          .nav-links {
-            display: none;
-          }
-          .mobile-menu-btn {
-            display: block;
-          }
-        }
-      </style>
-      <div class="navbar-container">
-            <a href="/" class="logo flex items-center gap-2">
-                <img src="{% static 'img/Eventos-RiK.png' %}" alt="Eventos RIK" class="h-10">
+
+    <!-- Navbar RIK (Sin Shadow DOM, usa clases CSS estándar) -->
+    <nav class="custom-navbar">
+        <div class="navbar-container">
+            <!-- Logo -->
+            <a href="/" class="logo">
+                <img src="{% static 'img/Eventos-RiK.png' %}" alt="Eventos RIK">
             </a>
-        <button class="mobile-menu-btn">
-          <i data-feather="menu"></i>
-        </button>
-        <div class="nav-links">
-          <a href="/"><i data-feather="home"></i> Inicio</a>
-          <a href="eventos.html"><i data-feather="music"></i> Eventos</a>
-          <a href="reservar.html"><i data-feather="bookmark"></i> Reservar</a>
-          <a href="contacto.html"><i data-feather="mail"></i> Contacto</a>
-          <a href="login.html" class="bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700 transition">
-            <i data-feather="log-in"></i> Iniciar Sesión
-          </a>
+            
+            <!-- Botón Menú Móvil -->
+            <button class="mobile-menu-btn">
+                <i data-feather="menu"></i>
+            </button>
+            
+            <!-- Enlaces de Navegación -->
+            <div class="nav-links">
+                <a href="/"><i data-feather="home"></i> Inicio</a>
+                <a href="/#eventos"><i data-feather="music"></i> Eventos</a>
+                <a href="/reservar"><i data-feather="bookmark"></i> Reservar</a>
+                <a href="/contacto"><i data-feather="mail"></i> Contacto</a>
+                
+                {% if user.is_authenticated %}
+                    <span class="text-gray-700 font-medium px-3">Hola, {{ user.username }}</span>
+                    <form action="{% url 'logout' %}" method="post" class="inline-flex">
+                        {% csrf_token %}
+                        <button type="submit" class="text-red-500 hover:text-red-700 font-medium transition flex items-center gap-1">
+                            <i data-feather="log-out" class="w-4 h-4"></i> Salir
+                        </button>
+                    </form>
+                {% else %}
+                    <a href="/login/" class="login-btn">
+                        <i data-feather="log-in"></i> Iniciar Sesión
+                    </a>
+                {% endif %}
+            </div>
         </div>
-      </div>
-    </template></custom-navbar>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <main class="flex-grow container mx-auto px-4 py-8">
+        {% block content %}
+        <!-- Contenido por defecto si no se sobreescribe -->
+        <div class="text-center py-20">
+            <h1 class="text-4xl font-bold text-dark mb-4">Bienvenido a Eventos RIK</h1>
+            <p class="text-gray-600 text-lg">Tu plataforma de gestión de reservas favorita.</p>
+        </div>
+        {% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-8 mt-auto">
+        <div class="container mx-auto text-center">
+            <p class="mb-4">© 2025 Eventos RIK - Gestión de Reservas</p>
+            <div class="flex justify-center gap-4">
+                <i data-feather="facebook" class="w-5 h-5 hover:text-primary cursor-pointer transition"></i>
+                <i data-feather="instagram" class="w-5 h-5 hover:text-primary cursor-pointer transition"></i>
+                <i data-feather="twitter" class="w-5 h-5 hover:text-primary cursor-pointer transition"></i>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Inicializar Iconos -->
+    <script>
+        feather.replace();
+    </script>
 </body>
+
 </html>
