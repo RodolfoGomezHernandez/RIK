@@ -10,4 +10,3 @@ class EventoAdmin(admin.ModelAdmin):
 class ReservaAdmin(admin.ModelAdmin):
     list_display = ('usuario', 'evento', 'fecha_reserva', 'estado')
     list_filter = ('evento', 'fecha_reserva')
-
