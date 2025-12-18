@@ -1,0 +1,208 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- 1. HERO SECTION -->
+<section class="relative bg-dark text-white rounded-2xl overflow-hidden mb-16 shadow-2xl">
+    <!-- Imagen de fondo con overlay -->
+    <div class="absolute inset-0 z-0">
+        <img src="{% static 'img/estadio-municipal.jpg' %}" alt="Fondo" class="w-full h-full object-cover opacity-40">
+        <div class="absolute inset-0 bg-gradient-to-r from-dark to-transparent"></div>
+    </div>
+
+    <div class="relative z-10 px-8 py-20 md:py-32 max-w-4xl">
+        <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+            Descubre y Organiza <br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-300 to-blue-400">Eventos Inolvidables</span>
+        </h1>
+        <p class="text-xl text-gray-200 mb-8 max-w-2xl">
+            La plataforma líder en Curicó para gestionar tus reservas. Desde conciertos masivos hasta reuniones corporativas exclusivas.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4">
+            <a href="#eventos" class="bg-primary hover:bg-indigo-600 text-white font-bold py-4 px-8 rounded-xl transition transform hover:scale-105 text-center shadow-lg shadow-indigo-500/30">
+                Explorar Eventos
+            </a>
+            <a href="/reservar" class="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 text-white font-bold py-4 px-8 rounded-xl transition text-center">
+                Reservar Espacio
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- 2. EVENTO DESTACADO -->
+<section class="mb-20">
+    <div class="flex flex-col md:flex-row bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
+        <div class="md:w-1/2 relative min-h-[300px]">
+            <img src="{% static 'img/Feria-verano-Curico-1.jpeg' %}" alt="Evento Destacado" class="absolute inset-0 w-full h-full object-cover">
+            <div class="absolute top-4 left-4 bg-secondary text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                Destacado
+            </div>
+        </div>
+        <div class="md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
+            <h2 class="text-3xl font-bold text-dark mb-4">Gran Feria de Verano 2025</h2>
+            <div class="flex items-center gap-4 text-gray-500 mb-6 text-sm">
+                <span class="flex items-center gap-1"><i data-feather="calendar" class="w-4 h-4"></i> 15-20 Enero</span>
+                <span class="flex items-center gap-1"><i data-feather="map-pin" class="w-4 h-4"></i> Plaza de Armas</span>
+            </div>
+            <p class="text-gray-600 mb-8 leading-relaxed">
+                No te pierdas el evento cultural más grande del año. Artesanía, gastronomía local, música en vivo y actividades para toda la familia en el corazón de la ciudad.
+            </p>
+            <a href="#" class="text-primary font-bold hover:text-indigo-700 flex items-center gap-2 group">
+                Ver detalles del evento 
+                <i data-feather="arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- 3. PRÓXIMOS EVENTOS (GRID) -->
+<section id="eventos" class="mb-20">
+    <div class="flex justify-between items-end mb-10">
+        <div>
+            <h2 class="text-3xl font-bold text-dark mb-2">Próximos Eventos</h2>
+            <p class="text-gray-500">Reserva tu entrada antes que se agoten</p>
+        </div>
+        <a href="#" class="hidden md:flex items-center gap-1 text-primary font-medium hover:text-indigo-700">
+            Ver todo <i data-feather="chevron-right" class="w-4 h-4"></i>
+        </a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Card 1 -->
+        <article class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition duration-300 overflow-hidden group border border-gray-100 flex flex-col h-full">
+            <div class="relative h-48 overflow-hidden">
+                <img src="{% static 'img/Festival-Curico-es-Danza.jpg' %}" alt="Danza" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                <div class="absolute top-4 right-4 bg-white/90 backdrop-blur text-dark font-bold px-3 py-1 rounded-lg text-sm shadow-sm">
+                    $15.000
+                </div>
+            </div>
+            <div class="p-6 flex flex-col flex-grow">
+                <div class="text-sm text-primary font-bold mb-2 uppercase tracking-wide">Cultura</div>
+                <h3 class="text-xl font-bold text-dark mb-2 group-hover:text-primary transition">Festival Curicó es Danza</h3>
+                <p class="text-gray-500 text-sm mb-4 line-clamp-2 flex-grow">
+                    Una muestra impresionante de talento local e internacional en el teatro municipal.
+                </p>
+                <div class="border-t border-gray-100 pt-4 mt-auto flex items-center justify-between text-sm text-gray-400">
+                    <span class="flex items-center gap-1"><i data-feather="calendar" class="w-4 h-4"></i> 12 Dic</span>
+                    <span class="flex items-center gap-1"><i data-feather="users" class="w-4 h-4"></i> 350 cupos</span>
+                </div>
+            </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition duration-300 overflow-hidden group border border-gray-100 flex flex-col h-full">
+            <div class="relative h-48 overflow-hidden">
+                <img src="{% static 'img/Noche-de-gala.jpeg' %}" alt="Gala" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                <div class="absolute top-4 right-4 bg-white/90 backdrop-blur text-dark font-bold px-3 py-1 rounded-lg text-sm shadow-sm">
+                    $45.000
+                </div>
+            </div>
+            <div class="p-6 flex flex-col flex-grow">
+                <div class="text-sm text-secondary font-bold mb-2 uppercase tracking-wide">Social</div>
+                <h3 class="text-xl font-bold text-dark mb-2 group-hover:text-primary transition">Noche de Gala Empresarial</h3>
+                <p class="text-gray-500 text-sm mb-4 line-clamp-2 flex-grow">
+                    Cena anual de la cámara de comercio con invitados especiales y networking.
+                </p>
+                <div class="border-t border-gray-100 pt-4 mt-auto flex items-center justify-between text-sm text-gray-400">
+                    <span class="flex items-center gap-1"><i data-feather="calendar" class="w-4 h-4"></i> 20 Dic</span>
+                    <span class="flex items-center gap-1"><i data-feather="users" class="w-4 h-4"></i> 100 cupos</span>
+                </div>
+            </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition duration-300 overflow-hidden group border border-gray-100 flex flex-col h-full">
+            <div class="relative h-48 overflow-hidden">
+                <img src="{% static 'img/Centro-de-convenciones.jpg' %}" alt="Tech" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                <div class="absolute top-4 right-4 bg-primary text-white font-bold px-3 py-1 rounded-lg text-sm shadow-sm">
+                    Gratis
+                </div>
+            </div>
+            <div class="p-6 flex flex-col flex-grow">
+                <div class="text-sm text-blue-500 font-bold mb-2 uppercase tracking-wide">Tecnología</div>
+                <h3 class="text-xl font-bold text-dark mb-2 group-hover:text-primary transition">Expo Tech Maule</h3>
+                <p class="text-gray-500 text-sm mb-4 line-clamp-2 flex-grow">
+                    Descubre las últimas innovaciones tecnológicas de la región en un solo lugar.
+                </p>
+                <div class="border-t border-gray-100 pt-4 mt-auto flex items-center justify-between text-sm text-gray-400">
+                    <span class="flex items-center gap-1"><i data-feather="calendar" class="w-4 h-4"></i> 05 Ene</span>
+                    <span class="flex items-center gap-1"><i data-feather="users" class="w-4 h-4"></i> Ilimitado</span>
+                </div>
+            </div>
+        </article>
+    </div>
+</section>
+
+<!-- 4. TESTIMONIOS -->
+<section class="py-16 bg-gray-50 rounded-3xl mb-16 px-6">
+    <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-dark">Lo que dicen nuestros usuarios</h2>
+        <div class="w-20 h-1 bg-primary mx-auto mt-4 rounded-full"></div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <!-- Testimonio 1 -->
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+            <div class="flex text-yellow-400 mb-4">
+                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+            </div>
+            <p class="text-gray-600 mb-6 italic">"Organizar el congreso médico fue increíblemente fácil gracias a RiK. La gestión de reservas funcionó a la perfección."</p>
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center font-bold text-dark">DR</div>
+                <div>
+                    <h4 class="font-bold text-sm text-dark">Dr. Roberto Silva</h4>
+                    <p class="text-xs text-gray-500">Hospital de Curicó</p>
+                </div>
+            </div>
+        </div>
+        <!-- Repetir estructura para más testimonios -->
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+            <div class="flex text-yellow-400 mb-4">
+                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                <i data-feather="star" class="w-4 h-4 text-gray-300"></i>
+            </div>
+            <p class="text-gray-600 mb-6 italic">"Encontré el lugar perfecto para mi boda. La plataforma es muy intuitiva y las fotos son reales."</p>
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center font-bold text-dark">MV</div>
+                <div>
+                    <h4 class="font-bold text-sm text-dark">María Valdés</h4>
+                    <p class="text-xs text-gray-500">Usuario Verificado</p>
+                </div>
+            </div>
+        </div>
+        <!-- Testimonio 3 -->
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+            <div class="flex text-yellow-400 mb-4">
+                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                <i data-feather="star" class="w-4 h-4 fill-current"></i>
+            </div>
+            <p class="text-gray-600 mb-6 italic">"Excelente soporte técnico. Tuvimos un problema con un pago y lo resolvieron en minutos."</p>
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center font-bold text-dark">JP</div>
+                <div>
+                    <h4 class="font-bold text-sm text-dark">Juan Pérez</h4>
+                    <p class="text-xs text-gray-500">Productor de Eventos</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 5. CTA FINAL -->
+<section class="bg-gradient-to-r from-primary to-purple-600 rounded-2xl p-12 text-center text-white mb-10 shadow-lg">
+    <h2 class="text-3xl font-bold mb-4">¿Listo para crear tu propio evento?</h2>
+    <p class="text-indigo-100 mb-8 max-w-2xl mx-auto">Únete a cientos de organizadores que ya confían en Eventos RIK para gestionar sus espacios y reservas.</p>
+    <a href="/registro" class="bg-white text-primary font-bold py-3 px-8 rounded-lg hover:bg-gray-100 transition shadow-md inline-block">
+        Comenzar Gratis
+    </a>
+</section>
+{% endblock %}

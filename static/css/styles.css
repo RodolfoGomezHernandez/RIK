@@ -1,6 +1,4 @@
-/* Importación limpia de fuentes */
 @import url('[https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap](https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap)');
-
 body {
     font-family: 'Poppins', sans-serif;
 }
@@ -107,3 +105,19 @@ body {
 ::-webkit-scrollbar-track { background: #f1f1f1; }
 ::-webkit-scrollbar-thumb { background: #6366f1; border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: #4f46e5; }
+
+/* --- ESTILOS DEL HOME --- */
+
+/* Efecto hover suave para las tarjetas */
+article {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+article:hover {
+    transform: translateY(-5px);
+}
+
+/* Asegurar que las imágenes mantengan proporción */
+.aspect-video {
+    aspect-ratio: 16 / 9;
+}
