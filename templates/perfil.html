@@ -3,72 +3,60 @@
 
 {% block content %}
 <div class="container mx-auto px-4 py-12">
-    <!-- Encabezado de Bienvenida -->
-    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 mb-10 flex flex-col md:flex-row items-center justify-between">
+    <!-- Bienvenida -->
+    <div class="bg-white rounded-2xl p-8 mb-8 shadow-sm border border-gray-100 flex justify-between items-center">
         <div>
-            <h1 class="text-3xl font-bold text-gray-900 mb-2">¡Hola, {{ user.username }}! 👋</h1>
-            <p class="text-gray-500">Bienvenido a tu panel de control. Aquí puedes ver tus próximos eventos.</p>
+            <h1 class="text-3xl font-bold text-gray-900">Hola, {{ user.username }} 👋</h1>
+            <p class="text-gray-500">Aquí están tus próximos eventos.</p>
         </div>
-        <div class="mt-4 md:mt-0">
-            <a href="{% url 'lista_eventos' %}" class="inline-flex items-center gap-2 bg-primary hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg transition">
-                <i data-feather="plus-circle" class="w-5 h-5"></i> Explorar Eventos
-            </a>
-        </div>
+        <a href="{% url 'lista_eventos' %}" class="bg-primary hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg transition">
+            Buscar más eventos
+        </a>
     </div>
 
-    <!-- Mensajes de Feedback -->
+    <!-- Mensajes -->
     {% if messages %}
-        <div class="mb-8">
+        <div class="mb-8 space-y-2">
             {% for message in messages %}
-                <div class="p-4 rounded-lg mb-4 flex items-center {% if message.tags == 'success' %}bg-green-100 text-green-700 border border-green-200{% elif message.tags == 'error' %}bg-red-100 text-red-700 border border-red-200{% else %}bg-yellow-100 text-yellow-700 border border-yellow-200{% endif %}">
-                    <i data-feather="info" class="mr-3 w-5 h-5"></i>
+                <div class="p-4 rounded-lg {% if message.tags == 'success' %}bg-green-100 text-green-800{% else %}bg-yellow-100 text-yellow-800{% endif %}">
                     {{ message }}
                 </div>
             {% endfor %}
         </div>
     {% endif %}
 
-    <!-- Lista de Reservas -->
-    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
-        <i data-feather="bookmark" class="text-primary"></i> Mis Reservas
-    </h2>
-
+    <!-- Lista de Tickets -->
+    <h2 class="text-2xl font-bold text-gray-800 mb-6">Mis Tickets</h2>
+    
     {% if reservas %}
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             {% for reserva in reservas %}
-            <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 hover:shadow-lg transition">
-                <div class="flex">
-                    <!-- Miniatura -->
-                    <div class="w-1/3 bg-gray-200">
-                        <img src="{% static reserva.evento.imagen_url %}" alt="{{ reserva.evento.titulo }}" class="w-full h-full object-cover" onerror="this.src='[https://via.placeholder.com/150](https://via.placeholder.com/150)'">
+            <div class="bg-white rounded-xl shadow-md overflow-hidden flex border border-gray-200">
+                <!-- Imagen -->
+                <div class="w-1/3 bg-gray-200 relative">
+                    <img src="{% static reserva.evento.imagen_url %}" class="absolute inset-0 w-full h-full object-cover" onerror="this.src='[https://via.placeholder.com/150](https://via.placeholder.com/150)'">
+                </div>
+                <!-- Info -->
+                <div class="w-2/3 p-6 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-bold text-xl text-gray-900 mb-2">{{ reserva.evento.titulo }}</h3>
+                        <div class="text-sm text-gray-600 space-y-1">
+                            <p><i data-feather="calendar" class="w-4 h-4 inline mr-1"></i> {{ reserva.evento.fecha_inicio|date:"d M Y, H:i" }}</p>
+                            <p><i data-feather="map-pin" class="w-4 h-4 inline mr-1"></i> {{ reserva.evento.lugar }}</p>
+                        </div>
                     </div>
-                    <!-- Info -->
-                    <div class="w-2/3 p-4 flex flex-col justify-between">
-                        <div>
-                            <h3 class="font-bold text-gray-900 mb-1 leading-tight">{{ reserva.evento.titulo }}</h3>
-                            <p class="text-xs text-gray-500 mb-2">
-                                <i data-feather="calendar" class="w-3 h-3 inline"></i> {{ reserva.evento.fecha_inicio|date:"d M Y, H:i" }}
-                            </p>
-                            <span class="inline-block bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full font-semibold">
-                                {{ reserva.estado|title }}
-                            </span>
-                        </div>
-                        <div class="mt-3 text-right">
-                            <span class="text-xs text-gray-400">Reservado el: {{ reserva.fecha_reserva|date:"d/m/Y" }}</span>
-                        </div>
+                    <div class="mt-4 pt-4 border-t border-gray-100 flex justify-between items-center">
+                        <span class="bg-green-100 text-green-800 text-xs font-bold px-2 py-1 rounded">CONFIRMADA</span>
+                        <span class="text-xs text-gray-400">ID: #{{ reserva.id }}</span>
                     </div>
                 </div>
             </div>
             {% endfor %}
         </div>
     {% else %}
-        <div class="text-center py-16 bg-gray-50 rounded-2xl border-2 border-dashed border-gray-200">
-            <div class="bg-indigo-50 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <i data-feather="calendar" class="w-8 h-8 text-primary"></i>
-            </div>
-            <h3 class="text-lg font-bold text-gray-900 mb-2">Aún no tienes reservas</h3>
-            <p class="text-gray-500 mb-6 max-w-sm mx-auto">Explora la cartelera y reserva tu lugar en los mejores eventos de la ciudad.</p>
-            <a href="{% url 'lista_eventos' %}" class="text-primary font-bold hover:underline">Ir a Eventos Disponibles &rarr;</a>
+        <div class="text-center py-16 bg-gray-50 rounded-2xl">
+            <p class="text-gray-500 mb-4">No tienes reservas activas.</p>
+            <a href="{% url 'lista_eventos' %}" class="text-primary font-bold hover:underline">Explorar Cartelera</a>
         </div>
     {% endif %}
 </div>

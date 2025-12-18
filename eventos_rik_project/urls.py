@@ -24,15 +24,15 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name='home'),
 
-    # Rutas de Autenticación
+    # Autenticación
     path('registro/', views.registro, name='registro'),
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(next_page='home'), name='logout'),
-
-    # Usuario
-    path('perfil/', views.perfil, name='perfil'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'), # Usamos settings para redirección
     
-    # Módulo de Reservas
+    # Usuario
+    path('perfil/', views.perfil, name='perfil'), # <--- NUEVA RUTA
+
+    # Reservas
     path('reservar/', views.lista_eventos, name='lista_eventos'),
     path('reservar/confirmar/<int:evento_id>/', views.reservar_evento, name='reservar_evento'),
 ]
