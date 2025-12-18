@@ -1,6 +1,5 @@
 from django.shortcuts import render
 
 def home(request):
-    # Renderizamos base.html temporalmente para probar el diseño
-    return render(request, 'base.html')
+    # Renderizamos la plantilla específica del home
     return render(request, 'home.html')
