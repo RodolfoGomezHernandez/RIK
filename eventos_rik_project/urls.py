@@ -28,4 +28,8 @@ urlpatterns = [
     path('registro/', views.registro, name='registro'),
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(next_page='home'), name='logout'),
+    
+    #reservar eventos
+    path('reservar/', views.lista_eventos, name='lista_eventos'),
+    path('reservar/confirmar/<int:evento_id>/', views.reservar_evento, name='reservar_evento'),
 ]
