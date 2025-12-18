@@ -1,8 +1,13 @@
+/* Importación limpia sin caracteres extraños */
 @import url('[https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap](https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap)');
-body { font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Scrollbar personalizado */
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: #f1f1f1; }
 ::-webkit-scrollbar-thumb { background: #6366f1; border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: #4f46e5; }
-.card-hover:hover { transform: translateY(-5px); transition: transform 0.3s ease; }
 
